@@ -223,6 +223,13 @@ body-parser@1.20.1:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
+browser-tabs-lock@^1.2.14:
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/browser-tabs-lock/-/browser-tabs-lock-1.2.15.tgz#d5012e652e2a0cb4eba471b0a2300c2fa5d92788"
+  integrity sha512-J8K9vdivK0Di+b8SBdE7EZxDr88TnATing7XoLw6+nFkXMQ6sVBh92K3NQvZlZU91AIkFRi0w3sztk5Z+vsswA==
+  dependencies:
+    lodash ">=4.17.21"
+
 buffer-equal-constant-time@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/buffer-equal-constant-time/-/buffer-equal-constant-time-1.0.1.tgz#f8e71132f7ffe6e01a5c9697a4c6f3e48d5cc819"
@@ -472,7 +479,7 @@ lodash.clonedeep@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
   integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
 
-lodash@^4.17.21:
+lodash@>=4.17.21, lodash@^4.17.21:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -757,12 +764,12 @@ supertokens-auth-react@^0.31.0:
     prop-types "^15.7.2"
     supertokens-js-override "^0.0.4"
 
-supertokens-js-override@^0.0.4:
+supertokens-js-override@0.0.4, supertokens-js-override@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/supertokens-js-override/-/supertokens-js-override-0.0.4.tgz#9af583fbc5e1f0195dbb358c4fcf75f44c76dc09"
   integrity sha512-r0JFBjkMIdep3Lbk3JA+MpnpuOtw4RSyrlRAbrzMcxwiYco3GFWl/daimQZ5b1forOiUODpOlXbSOljP/oyurg==
 
-supertokens-node@^13.1.5:
+supertokens-node@^13.2.0:
   version "13.2.0"
   resolved "https://registry.yarnpkg.com/supertokens-node/-/supertokens-node-13.2.0.tgz#e3524c6fe6320353927600018bd56a6b26448fc5"
   integrity sha512-Lx0kaU6YRM14gYrTOlBn7cYniGF/YWl0btAhTmMHBvpJjMe2XYdN+m5WJ8oVj3n+9JyeXOJC1py6KND9Pr7/XQ==
@@ -780,6 +787,22 @@ supertokens-node@^13.1.5:
     supertokens-js-override "^0.0.4"
     twilio "^4.7.2"
     verify-apple-id-token "^3.0.1"
+
+supertokens-web-js@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/supertokens-web-js/-/supertokens-web-js-0.5.0.tgz#bb51e18dd692b281e73b9904055a5757305ffd8c"
+  integrity sha512-qlpgWLnHBor98k5wY97vzG7ouVOb/eeWOCKgaid055MUVPQr2gTEDrlKJN9I+Z4Vj6Dmblg1vC/cUbR/cx1TGw==
+  dependencies:
+    supertokens-js-override "0.0.4"
+    supertokens-website "^16.0.0"
+
+supertokens-website@^16.0.0:
+  version "16.0.4"
+  resolved "https://registry.yarnpkg.com/supertokens-website/-/supertokens-website-16.0.4.tgz#393a18a9fcc0fbd9d57d031e0ee24baf3c7eeca8"
+  integrity sha512-o6o2N5B0Pg1o+wSxNfV2J+hbWBuaAGHXr++ZpUzNcTAQaJKAnwK26LiTbNZaujYTCreC9YYQGjm0bmIWUMmLcg==
+  dependencies:
+    browser-tabs-lock "^1.2.14"
+    supertokens-js-override "^0.0.4"
 
 toidentifier@1.0.1:
   version "1.0.1"

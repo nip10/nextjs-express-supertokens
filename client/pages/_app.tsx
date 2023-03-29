@@ -8,6 +8,7 @@ import * as SuperTokensConfig from "../config/frontendConfig";
 import Session from "supertokens-auth-react/recipe/session";
 
 if (typeof window !== "undefined") {
+  console.log("here");
   SuperTokensReact.init(SuperTokensConfig.frontendConfig());
 }
 

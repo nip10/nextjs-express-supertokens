@@ -12,6 +12,9 @@ import {
   SessionRequest,
 } from "supertokens-node/lib/build/framework/express";
 import { verifySession } from "supertokens-node/recipe/session/framework/express";
+import morgan from "morgan";
+import Dashboard from "supertokens-node/recipe/dashboard";
+import EmailVerification from "supertokens-node/recipe/emailverification";
 
 const { SUPERTOKENS_CONNECTION_URI, SUPERTOKENS_API_KEY } = process.env;
 
@@ -31,6 +34,9 @@ supertokens.init({
     websiteBasePath: "/auth",
   },
   recipeList: [
+    EmailVerification.init({
+      mode: "OPTIONAL",
+    }),
     ThirdPartyEmailPassword.init({
       providers: [
         // We have provided you with development keys which you can use for testing.
@@ -120,6 +126,7 @@ supertokens.init({
     }),
     // TODO: Not sure it this is needed
     Session.init(), // initializes session features
+    Dashboard.init(), // initializes dashboard
   ],
 });
 
@@ -139,6 +146,7 @@ const corsOptions: CorsOptions = {
 };
 app.use(cors(corsOptions));
 app.use(cookieParser());
+app.use(morgan("dev"));
 
 app.use(superTokensMiddleware());
 

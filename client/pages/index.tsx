@@ -39,13 +39,6 @@ function ProtectedPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <p className={styles.description}>
-          You are authenticated with SuperTokens!
-        </p>
-
         <p className={styles.description}>
           UserId: {session.userId} <br />
         </p>
@@ -53,64 +46,48 @@ function ProtectedPage() {
           Access token payload: {JSON.stringify(session.accessTokenPayload)}
         </p>
         <div
+          onClick={logoutClicked}
           style={{
             display: "flex",
-            height: "70px",
+            width: "116px",
+            height: "42px",
+            backgroundColor: "#000000",
+            borderRadius: "10px",
+            cursor: "pointer",
             alignItems: "center",
-            justifyContent: "flex-end",
-            paddingLeft: "75px",
-            paddingRight: "75px",
+            justifyContent: "center",
+            color: "#ffffff",
+            fontWeight: "bold",
           }}
         >
-          <div
-            onClick={logoutClicked}
-            style={{
-              display: "flex",
-              width: "116px",
-              height: "42px",
-              backgroundColor: "#000000",
-              borderRadius: "10px",
-              cursor: "pointer",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#ffffff",
-              fontWeight: "bold",
-            }}
-          >
-            SIGN OUT
-          </div>
+          SIGN OUT
+        </div>
+        <div
+          onClick={fetchData}
+          style={{
+            display: "flex",
+            width: "150px",
+            height: "42px",
+            backgroundColor: "rgb(247 54 54)",
+            borderRadius: "10px",
+            cursor: "pointer",
+            alignItems: "center",
+            justifyContent: "center",
+            color: "#ffffff",
+            fontWeight: "bold",
+          }}
+        >
+          FETCH USER API
         </div>
         <div
           style={{
             display: "flex",
-            height: "70px",
-            alignItems: "center",
-            justifyContent: "flex-end",
-            paddingLeft: "75px",
-            paddingRight: "75px",
+            flexDirection: "column",
+            width: "150px",
           }}
         >
-          <div
-            onClick={fetchData}
-            style={{
-              display: "flex",
-              width: "150px",
-              height: "42px",
-              backgroundColor: "rgb(247 54 54)",
-              borderRadius: "10px",
-              cursor: "pointer",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#ffffff",
-              fontWeight: "bold",
-            }}
-          >
-            FETCH USER API
-          </div>
-          <p>
-            Api Response Data:{" "}
-            <pre>{JSON.stringify(apiResponse, null, 2)} </pre>
-          </p>
+          <h2>Api Response Data:</h2>
+          <pre>{JSON.stringify(apiResponse, null, 2)} </pre>
         </div>
 
         <div className={styles.grid}>

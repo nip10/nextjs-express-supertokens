@@ -14,7 +14,4 @@ export const appInfo = {
   websiteDomain: "http://localhost:3000",
   apiBasePath: "/v1/auth",
   websiteBasePath: "/auth",
-  // websiteDomain,
-  // apiDomain: websiteDomain,
-  // apiBasePath,
 };
