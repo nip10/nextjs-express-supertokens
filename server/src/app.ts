@@ -124,7 +124,6 @@ supertokens.init({
         },
       },
     }),
-    // TODO: Not sure it this is needed
     Session.init(), // initializes session features
     Dashboard.init(), // initializes dashboard
   ],

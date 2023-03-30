@@ -13,7 +13,17 @@ const PrivatePage: NextPage = () => {
   return (
     <SessionAuth>
       <div>This is a private page</div>
-      <p>User id: {session.userId} </p>
+      <div>
+        <h2>Session </h2>
+        <pre
+          style={{
+            whiteSpace: "pre-wrap",
+            wordWrap: "break-word",
+          }}
+        >
+          {JSON.stringify(session, null, 2)}{" "}
+        </pre>
+      </div>
     </SessionAuth>
   );
 };

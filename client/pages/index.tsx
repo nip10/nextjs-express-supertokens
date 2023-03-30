@@ -5,10 +5,11 @@ import {
   SessionAuth,
   useSessionContext,
 } from "supertokens-auth-react/recipe/session";
-import { redirectToAuth } from "supertokens-auth-react";
+import { redirectToAuth, useUserContext } from "supertokens-auth-react";
 
 function ProtectedPage() {
   const session = useSessionContext();
+  const user = useUserContext();
 
   async function logoutClicked() {
     await ThirdPartyEmailPassword.signOut();
@@ -43,9 +44,6 @@ function ProtectedPage() {
           placeItems: "center",
         }}
       >
-        <p>
-          UserId: {session.userId} <br />
-        </p>
         <div
           style={{
             display: "flex",
@@ -53,8 +51,32 @@ function ProtectedPage() {
             width: "350px",
           }}
         >
-          <h2>Access token payload:</h2>
-          <pre>{JSON.stringify(session.accessTokenPayload, null, 2)} </pre>
+          <h2>User </h2>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
+            }}
+          >
+            {JSON.stringify(user, null, 2)}{" "}
+          </pre>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "350px",
+          }}
+        >
+          <h2>Session </h2>
+          <pre
+            style={{
+              whiteSpace: "pre-wrap",
+              wordWrap: "break-word",
+            }}
+          >
+            {JSON.stringify(session, null, 2)}{" "}
+          </pre>
         </div>
         <button onClick={logoutClicked}>SIGN OUT</button>
         <button onClick={fetchData}>FETCH USER API</button>
