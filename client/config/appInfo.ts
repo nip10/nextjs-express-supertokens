@@ -1,3 +1,5 @@
+import type { AppInfoUserInput } from "supertokens-auth-react/lib/build/types";
+
 const port = process.env.APP_PORT || 3000;
 
 export const websiteDomain =
@@ -5,7 +7,7 @@ export const websiteDomain =
   process.env.NEXT_PUBLIC_APP_URL ||
   `http://localhost:${port}`;
 
-export const appInfo = {
+export const appInfo: AppInfoUserInput = {
   // learn more about this on https://supertokens.com/docs/thirdpartyemailpassword/appinfo
   appName: "MyTestApp",
   apiDomain: "http://localhost:3001",

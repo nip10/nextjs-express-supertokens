@@ -9,7 +9,7 @@ import ThirdPartyEmailPassword from "supertokens-node/recipe/thirdpartyemailpass
 import {
   errorHandler as superTokensErrorHandler,
   middleware as superTokensMiddleware,
-  SessionRequest,
+  type SessionRequest,
 } from "supertokens-node/lib/build/framework/express";
 import { verifySession } from "supertokens-node/recipe/session/framework/express";
 import morgan from "morgan";
@@ -169,6 +169,8 @@ app.get("/restricted", verifySession(), async (req: SessionRequest, res) => {
     accessTokenPayload,
   });
 });
+
+const router = express.Router();
 
 app.use(superTokensErrorHandler());
 
