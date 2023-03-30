@@ -1,6 +1,7 @@
+import type { NextPage } from "next";
 import { SessionAuth } from "supertokens-auth-react/recipe/session";
 
-const PrivatePage = () => {
+const PrivatePage: NextPage = () => {
   return (
     <SessionAuth>
       <div>This is a private page</div>

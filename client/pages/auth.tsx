@@ -3,12 +3,15 @@ import {
   ThirdpartyEmailPasswordComponentsOverrideProvider,
 } from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import Session from "supertokens-auth-react/recipe/session";
+import type { NextPage } from "next";
 
-const LoginPage = () => {
-  let sessionContext = Session.useSessionContext();
+const AuthPage: NextPage = () => {
+  const sessionContext = Session.useSessionContext();
+
   if (sessionContext.loading) {
     return null;
   }
+
   return (
     <div
       style={{
@@ -44,4 +47,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AuthPage;

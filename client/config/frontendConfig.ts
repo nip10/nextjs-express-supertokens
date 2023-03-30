@@ -55,12 +55,6 @@ export let frontendConfig = (): SuperTokensConfig => {
       }),
       Session.init(),
     ],
-    // The user will be taken to the custom path when then need to login.
-    getRedirectionURL: async (context) => {
-      if (context.action === "TO_AUTH") {
-        return "/foo";
-      }
-    },
     // this is so that the SDK uses the next router for navigation
     windowHandler: (oI) => {
       return {
