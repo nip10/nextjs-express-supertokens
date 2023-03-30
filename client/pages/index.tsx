@@ -1,12 +1,12 @@
+import { useState } from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import ThirdPartyEmailPassword from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import {
   SessionAuth,
   useSessionContext,
 } from "supertokens-auth-react/recipe/session";
 import { redirectToAuth } from "supertokens-auth-react";
-import { useState } from "react";
+import styles from "../styles/Home.module.css";
 
 function ProtectedPage() {
   const session = useSessionContext();

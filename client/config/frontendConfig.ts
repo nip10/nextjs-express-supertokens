@@ -1,10 +1,11 @@
+import Router from "next/router";
 import ThirdPartyEmailPassword from "supertokens-auth-react/recipe/thirdpartyemailpassword";
 import Session from "supertokens-auth-react/recipe/session";
-import { appInfo } from "./appInfo";
-import Router from "next/router";
 import EmailVerification from "supertokens-auth-react/recipe/emailverification";
+import type { SuperTokensConfig } from "supertokens-auth-react/lib/build/types";
+import { appInfo } from "./appInfo";
 
-export let frontendConfig = () => {
+export let frontendConfig = (): SuperTokensConfig => {
   return {
     appInfo,
     enableDebugLogs: true,
@@ -23,22 +24,22 @@ export let frontendConfig = () => {
           disableDefaultUI: true,
         },
         style: `
-        [data-supertokens~="superTokensBranding"] {
-          display: none;
-          #9f7aea}
-                [data-supertokens~=container] {
-                    --palette-background: 51, 51, 51;
-                    --palette-inputBackground: 41, 41, 41;
-                    --palette-inputBorder: 41, 41, 41;
-                    --palette-textTitle: 255, 255, 255;
-                    --palette-textLabel: 255, 255, 255;
-                    --palette-textPrimary: 255, 255, 255;
-                    --palette-error: 173, 46, 46;
-                    --palette-textInput: 169, 169, 169;
-                    --palette-textLink: 169, 169, 169;
-                    --palette-primary: 159,122,234;
-                    --palette-primaryBorder: 159,122,234;
-                }
+          [data-supertokens~="superTokensBranding"] {
+              display: none;
+          }
+          [data-supertokens~=container] {
+              --palette-background: 51, 51, 51;
+              --palette-inputBackground: 41, 41, 41;
+              --palette-inputBorder: 41, 41, 41;
+              --palette-textTitle: 255, 255, 255;
+              --palette-textLabel: 255, 255, 255;
+              --palette-textPrimary: 255, 255, 255;
+              --palette-error: 173, 46, 46;
+              --palette-textInput: 169, 169, 169;
+              --palette-textLink: 169, 169, 169;
+              --palette-primary: 159,122,234;
+              --palette-primaryBorder: 159,122,234;
+          }
             `,
         onHandleEvent: async (context) => {
           // add analytics here

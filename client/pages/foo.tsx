@@ -22,8 +22,8 @@ const LoginPage = () => {
       <div>
         <ThirdpartyEmailPasswordComponentsOverrideProvider
           components={{
-            // In this case, the <EmailPasswordSignInHeader_Override> will render the original component
-            // wrapped in a div with an octocat picture above it.
+            // In this case, the <EmailPasswordSignInHeader_Override> will render the original
+            // component wrapped in a div with a picture above it.
             EmailPasswordSignInHeader_Override: ({
               DefaultComponent,
               ...props
