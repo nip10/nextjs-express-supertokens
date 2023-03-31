@@ -15,6 +15,7 @@ import { verifySession } from "supertokens-node/recipe/session/framework/express
 import morgan from "morgan";
 import Dashboard from "supertokens-node/recipe/dashboard";
 import EmailVerification from "supertokens-node/recipe/emailverification";
+import { JSONValue } from "supertokens-node/lib/build/types";
 
 const { SUPERTOKENS_CONNECTION_URI, SUPERTOKENS_API_KEY } = process.env;
 
@@ -59,12 +60,11 @@ supertokens.init({
                 throw Error("Should never come here");
               }
               // TODO: some pre sign up logic
-              input.userContext.extraProperty = "post sign up value";
               let response =
                 await originalImplementation.emailPasswordSignUpPOST(input);
               if (response.status === "OK") {
                 // TODO: some post sign up logic
-                console.log("[E+P] POST SIGN UP LOGIC", input, response);
+                // console.log("[E+P] POST SIGN UP LOGIC", input, response);
               }
               return response;
             },
@@ -75,13 +75,20 @@ supertokens.init({
               ) {
                 throw Error("Should never come here");
               }
-              // TODO: some pre sign in logic
-              input.userContext.extraProperty = "post sign in value";
+              const extraAccessTokenPayload: JSONValue = {};
+              extraAccessTokenPayload.propertyPreSignIn = "pre sign in";
+              // input.userContext.propertyPreSignIn = "pre sign in";
               let response =
                 await originalImplementation.emailPasswordSignInPOST(input);
               if (response.status === "OK") {
-                // TODO: some post sign in logic
-                console.log("[E+P] POST SIGN IN LOGIC", input, response);
+                // Do some stuff after sign in, get values from the database that we want to add to
+                // the access token payload
+                // console.log("[E+P] POST SIGN IN LOGIC", input, response);
+                extraAccessTokenPayload.propertyPostSignIn =
+                  "post sign in - value from database";
+                await response.session.mergeIntoAccessTokenPayload(
+                  extraAccessTokenPayload
+                );
               }
               return response;
             },
@@ -110,20 +117,24 @@ supertokens.init({
       },
     }),
     Session.init({
-      override: {
-        functions: (originalImplementation) => {
-          return {
-            ...originalImplementation,
-            createNewSession: async function (input) {
-              input.accessTokenPayload = {
-                ...input.accessTokenPayload,
-                extraProperty: input.userContext.extraProperty,
-              };
-              return originalImplementation.createNewSession(input);
-            },
-          };
-        },
-      },
+      // override: {
+      //   functions: (originalImplementation) => {
+      //     return {
+      //       ...originalImplementation,
+      //       createNewSession: async function (input) {
+      //         console.log("input userContext", input.userContext);
+      //         console.log("input accessTokenPayload", input.accessTokenPayload);
+      //         input.accessTokenPayload = {
+      //           ...input.accessTokenPayload,
+      //           propertyPreSignIn: input.userContext.propertyPreSignIn,
+      //           // propertyPostSignIn: input.userContext.propertyPostSignIn,
+      //           ignoredProperty: input.userContext.ignoredProperty ?? "hello", // this will be undefined
+      //         };
+      //         return originalImplementation.createNewSession(input);
+      //       },
+      //     };
+      //   },
+      // },
     }), // initializes session features
     Dashboard.init(), // initializes dashboard
   ],

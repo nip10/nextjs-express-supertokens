@@ -1,4 +1,4 @@
-import "../styles/globals.css";
+import type { AppProps } from "next/app";
 import { useEffect } from "react";
 import SuperTokensReact, {
   SuperTokensWrapper,
@@ -6,12 +6,13 @@ import SuperTokensReact, {
 } from "supertokens-auth-react";
 import * as SuperTokensConfig from "../config/frontendConfig";
 import Session from "supertokens-auth-react/recipe/session";
+import "../styles/globals.css";
 
 if (typeof window !== "undefined") {
   SuperTokensReact.init(SuperTokensConfig.frontendConfig());
 }
 
-function MyApp({ Component, pageProps }): JSX.Element {
+function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     async function doRefresh() {
       if (pageProps.fromSupertokens === "needs-refresh") {
