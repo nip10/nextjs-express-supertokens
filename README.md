@@ -42,7 +42,7 @@ in Session.override.functions.createNewSession
   }
 ```
 
-### Solution 2: Use session.mergeIntoAccessTokenPayload
+### Solution 2: Use session.mergeIntoAccessTokenPayload (recommended)
 
 1. Override the provider recipe api you want to use to get the user info and add it to the session. In this case, I'm using the `ThirdPartyEmailPassword` recipe and the `emailPasswordSignInPOST` api.
 
