@@ -51,7 +51,6 @@ supertokens.init({
         apis: (originalImplementation) => {
           return {
             ...originalImplementation,
-
             // override the email password sign up API
             emailPasswordSignUpPOST: async function (input) {
               if (
@@ -59,20 +58,16 @@ supertokens.init({
               ) {
                 throw Error("Should never come here");
               }
-
               // TODO: some pre sign up logic
-
+              input.userContext.extraProperty = "post sign up value";
               let response =
                 await originalImplementation.emailPasswordSignUpPOST(input);
-
               if (response.status === "OK") {
                 // TODO: some post sign up logic
                 console.log("[E+P] POST SIGN UP LOGIC", input, response);
               }
-
               return response;
             },
-
             // override the email password sign in API
             emailPasswordSignInPOST: async function (input) {
               if (
@@ -80,51 +75,56 @@ supertokens.init({
               ) {
                 throw Error("Should never come here");
               }
-
               // TODO: some pre sign in logic
-
+              input.userContext.extraProperty = "post sign in value";
               let response =
                 await originalImplementation.emailPasswordSignInPOST(input);
-
               if (response.status === "OK") {
                 // TODO: some post sign in logic
-
                 console.log("[E+P] POST SIGN IN LOGIC", input, response);
               }
-
               return response;
             },
-
             // override the thirdparty sign in / up API
             thirdPartySignInUpPOST: async function (input) {
               if (originalImplementation.thirdPartySignInUpPOST === undefined) {
                 throw Error("Should never come here");
               }
-
               // TODO: Some pre sign in / up logic
-
+              input.userContext.extraProperty = "post sign in / up value";
               let response =
                 await originalImplementation.thirdPartySignInUpPOST(input);
-
               if (response.status === "OK") {
                 if (response.createdNewUser) {
                   // TODO: some post sign up logic
-
                   console.log("[SOCIAL] POST SIGN UP LOGIC", input, response);
                 } else {
                   // TODO: some post sign in logic
-
                   console.log("[SOCIAL] POST SIGN IN LOGIC", input, response);
                 }
               }
-
               return response;
             },
           };
         },
       },
     }),
-    Session.init(), // initializes session features
+    Session.init({
+      override: {
+        functions: (originalImplementation) => {
+          return {
+            ...originalImplementation,
+            createNewSession: async function (input) {
+              input.accessTokenPayload = {
+                ...input.accessTokenPayload,
+                extraProperty: input.userContext.extraProperty,
+              };
+              return originalImplementation.createNewSession(input);
+            },
+          };
+        },
+      },
+    }), // initializes session features
     Dashboard.init(), // initializes dashboard
   ],
 });
